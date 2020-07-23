@@ -1,0 +1,607 @@
+{
+	"info": {
+		"_postman_id": "7d32a83f-c496-4738-94ed-0694880b498e",
+		"name": "Postman Kris",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dde14013-6281-490a-b930-ab7c0cf98072",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(500);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"An error has occurred.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Login\": \"KrisPostman\",\r\n  \"NativeName\": \"Kris Postman\",\r\n  \"Password\": \"858585\",\r\n  \"ConfirmPassword\": \"858585\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "104.40.150.146/api/user",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5b61d8c5-e0dd-485f-88fa-fd91cfd8db0d",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.token_type).to.eql(\"bearer\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "KrisPostman",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "858585",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "104.40.150.146/token",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Information about me",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2730cb99-351e-4eb0-a515-925ae89a0feb",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "104.40.150.146/api/me",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update information",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ad8c2df-031b-49e5-8a40-bac81872cafb",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eql(\"6b0d2192e4a34a57a0b95201e951b761\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Login\": \"KrisPostman\",\r\n  \"NativeName\": \"Kris Postman\",\r\n  \"OldPassword\": \"858585\",\r\n  \"Password\": \"42io42\",\r\n  \"ConfirmPassword\": \"42io42\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "104.40.150.146/api/user/6b0d2192e4a34a57a0b95201e951b761",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"user",
+						"6b0d2192e4a34a57a0b95201e951b761"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Information about user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "440ab244-cea5-46cf-b567-a2c120a23567",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "104.40.150.146/api/user/efda55d37a594e21bfbf69d50ea420d0",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"user",
+						"efda55d37a594e21bfbf69d50ea420d0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All maps",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4921603b-f8bf-4343-801d-ad161216fc20",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "104.40.150.146/api/map",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"map"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create game",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b6bc76b-5202-43e2-957c-41589a12283a",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.eql(\"Unable to find the map by the identifier.\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Name\": \"KrisPostman\",\r\n  \"MapId\": \"tr_krist\",\r\n  \"SwitchTimeout\": 45,\r\n  \"StartupTeamLives\": 10,\r\n  \"PoliceSpeed\": 3,\r\n  \"ThiefSpeed\": 4   \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "104.40.150.146/api/game",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"game"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All user games",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ac514dd-e183-412f-8929-341e735f3145",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "104.40.150.146/api/game",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"game"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Information about the game",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5c609b6d-99b3-4ce3-a615-d6a35949b3d9",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "104.40.150.146/api/game/c954d9b8f79a481e97b74a9e0e21113c",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"game",
+						"c954d9b8f79a481e97b74a9e0e21113c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Information about the users game",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1e0f3aa5-77a3-49eb-a39b-c88301252697",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "104.40.150.146/api/user/fe2f2cd82cfb497abbc1315ce97b6229/games",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"user",
+						"fe2f2cd82cfb497abbc1315ce97b6229",
+						"games"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete game",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f55e3214-b257-4bb9-a097-c8056450accb",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(110);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "104.40.150.146/api/game/50d8014b01d74b2ea40f5ad6cd2899c0",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"game",
+						"50d8014b01d74b2ea40f5ad6cd2899c0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show all maps",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f75b90c5-888b-447e-95c2-6c948cee0e47",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 250ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(250);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "104.40.150.146/api/maps",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"maps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Show all user maps",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "86d7c663-f710-43ac-b24f-cbd8f8bc49f4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(401);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "104.40.150.146/api/user/b090a6bcfffe4e7b898bbc0356f94021/maps",
+					"host": [
+						"104",
+						"40",
+						"150",
+						"146"
+					],
+					"path": [
+						"api",
+						"user",
+						"b090a6bcfffe4e7b898bbc0356f94021",
+						"maps"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "AQAAANCMnd8BFdERjHoAwE_Cl-sBAAAAAZ-KQx9Y8kGFX7ItjR4uNgAAAAACAAAAAAAQZgAAAAEAACAAAADcJWKJYTvmjQOrqXvMvRgfXFzTV98ZOfJc5yoAnFaRAwAAAAAOgAAAAAIAACAAAABD7VtFwNQwcPN7eo2pO8M7nFWbZ6yrLP4Oh0hJxXO64BABAAALpg1EohyyDUT9glEEGU0NOmymXblbC8XYcsq1YsVVk--tCWulGdgEZijGClxbdJJnjws2bWw0QMUgy8B-LHKKJQNyyaQv1oHz1oLoXt6P9Y3v2m5zbgP4r-7qSm7qDGRR_qTCwwcmwy0DELR-35k24f4-72UElcWNgjgpsCRQ91PGPO8-1_9MJtjZzwXQERKQ5KfKJfoRxSFS84ViOg1CwxDz4f0kNtmzZzzaRbUszzAO1jRDszhGcCLO3zWlyMsZYpJPS5foQ5F32fJllq6QIlvgRd2p7zSeVfjsdr12g7mtM672UY-P6sNmNeRivxCPecCb3oz1QU0GhppgOX9n7M4Ut1MHC8o3o84OknGZiEAAAABaQ1BCkb2jxIJCsB2Se_WFzCftB3wqK7sE3SWh4xbLaFr9rc_n1RHuMEhLqhRj35IIOEFcLYsyWQjWLSrmGt6c",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ddf68664-eee3-4f73-a914-8b4982680ce7",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c2a993fe-da90-4947-a385-a1d5eb23fc99",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
